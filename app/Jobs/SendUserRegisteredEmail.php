@@ -14,10 +14,10 @@ class SendUserRegisteredEmail implements ShouldQueue
     use Queueable , SerializesModels;
 
 
-     public int $tries = 3;
+    public int $tries = 3;
     public int $timeout = 30;
 
-    
+
     /**
      *
      * Create a new job instance.

@@ -4,7 +4,6 @@ namespace App\Observers;
 
 use App\Jobs\SendUserRegisteredEmail;
 use App\Models\User;
-use Illuminate\Support\Facades\Mail;
 
 class UserObserver
 {

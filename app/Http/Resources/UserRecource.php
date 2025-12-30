@@ -20,6 +20,12 @@ class UserRecource extends JsonResource
             'email' => $this->email,
             'type_of_user' => $this->type_of_user,
             'created_at' => $this->created_at->toDateTimeString(),
-        ];;
+            'profile' => ProfileResource::make($this->whenLoaded('profile')),
+            'products' => ProductResource::collection($this->whenLoaded('products')),
+            'promotions' => PromotionResource::collection($this->whenLoaded('promotions')),
+            'certificates' => CertificateResource::collection($this->whenLoaded('certificates')),
+            'JobLeads' => JobLeadResource::collection($this->whenLoaded('JobLeads')),
+            'Invoices' => InvoiceResource::collection($this->whenLoaded('invoices')),
+        ];
     }
 }

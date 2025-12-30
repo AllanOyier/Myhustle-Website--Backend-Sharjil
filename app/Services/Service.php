@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Services;
 
 use Illuminate\Database\Eloquent\Model;
@@ -25,6 +26,12 @@ abstract class Service
     public function create(array $data): Model
     {
         return $this->model->create($data);
+    }
+
+    public function createOrUpdate(array $conditions, array $data): Model
+    {
+
+        return $this->model->updateOrCreate($conditions, $data);
     }
 
     /**

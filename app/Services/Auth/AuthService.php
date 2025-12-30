@@ -23,6 +23,9 @@ class AuthService extends Service
         }
 
 
-        return $this->create($data);
+        /** @var User $user */
+        $user = $this->create($data);
+
+        return $user;
     }
 }
