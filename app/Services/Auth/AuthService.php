@@ -15,7 +15,7 @@ class AuthService extends Service
     }
 
 
-    public function register(array $data): User
+    public function register(array $data)
     {
 
         if (!Str::startsWith($data['password'], '$2y$')) {
@@ -26,6 +26,28 @@ class AuthService extends Service
         /** @var User $user */
         $user = $this->create($data);
 
-        return $user;
+        $token = $user->createToken('auth_token')->plainTextToken;
+        return [
+            'user' => $user,
+            'token' => $token
+        ];
+    }
+    public function login(array $data)
+    {
+        /** @var User $user */
+        $user = $this->query()
+            ->where('email', $data['email'])
+            ->firstOrFail();
+
+        if (!Hash::check($data['password'], $user->password)) {
+            abort(401, 'Invalid credentials');
+        }
+
+        $token = $user->createToken('auth_token')->plainTextToken;
+
+        return [
+            'user' => $user,
+            'token' => $token
+        ];
     }
 }

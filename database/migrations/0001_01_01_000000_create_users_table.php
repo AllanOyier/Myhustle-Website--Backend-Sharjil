@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('area');
             $table->string('type_of_enterprice');
             $table->string('mobile_number');
+            $table->string('whatsapp_number');
             $table->string('physical_address');
             $table->string('postal_address');
             $table->string('gender')->nullable();

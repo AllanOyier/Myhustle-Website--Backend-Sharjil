@@ -31,6 +31,7 @@ class User extends Authenticatable
         'area',
         'type_of_enterprice',
         'mobile_number',
+        'whatsapp_number',
         'physical_address',
         'postal_address',
         'gender',

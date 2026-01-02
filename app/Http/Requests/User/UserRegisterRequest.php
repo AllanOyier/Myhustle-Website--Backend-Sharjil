@@ -22,14 +22,15 @@ class UserRegisterRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'id' => ['required', 'string', 'max:255'],
+            'id' => ['required', 'string', 'max:255' , 'unique:users,id'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:users,email'],
-            'password' => ['required'],
+            'password' => ['required' , 'min:6' , 'string'],
             'country' => ['required', 'string', 'max:255'],
             'region' => ['required', 'string', 'max:255'],
             'area' => ['required', 'string', 'max:255'],
             'type_of_enterprice' => ['required', 'string', 'max:255'],
             'mobile_number' => ['required', 'string', 'max:255'],
+            'whatsapp_number' => ['required', 'string', 'max:255'],
             'physical_address' => ['required', 'string', 'max:255'],
             'postal_address' => ['required', 'string', 'max:255'],
             'type_of_user' => ['required', 'string', 'max:255'],

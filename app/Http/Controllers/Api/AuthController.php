@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\LoginRequest;
 use App\Http\Requests\User\UserRegisterRequest;
 use App\Http\Resources\UserRecource;
 use App\Services\Auth\AuthService;
@@ -11,42 +12,47 @@ use Illuminate\Http\Request;
 class AuthController extends Controller
 {
 
-    public function store(UserRegisterRequest $request , AuthService $service): UserRecource
+    public function store(UserRegisterRequest $request, AuthService $service)
     {
 
-        $user = $service->register($request->validated());
+        $result = $service->register($request->validated());
 
 
-        return new UserRecource($user);
+        return response()
+            ->json([new UserRecource($result['user']), 'token' => $result['token']])
+            ->cookie(
+                'access_token',  // Cookie name
+                $result['token'],          // Token value
+                60 * 24 * 7,         // Expire in minutes (7 days)
+                '/',              // Path
+                null,      // domain = null
+                false,            // Secure false for dev HTTP
+                true,             // HttpOnly
+                false,            // Raw
+                'None'            // SameSite=None for cross-port
+            );
     }
-
-    /**
-     * Display the resource.
-     */
-    public function show()
+    public function login(LoginRequest $request, AuthService $service)
     {
-        //
+        $result = $service->login($request->validated());
+
+        return response()
+            ->json(new UserRecource($result['user']))
+            ->cookie(
+                'access_token',  // Cookie name
+                $result['token'],          // Token value
+                60 * 24 * 7,         // Expire in minutes (7 days)
+                '/',              // Path
+                null,      // domain = null
+                false,            // Secure false for dev HTTP
+                true,             // HttpOnly
+                false,            // Raw
+                'None'            // SameSite=None for cross-port
+            );
     }
 
-    /**
-     * Show the form for editing the resource.
-     */
-    public function edit()
-    {
-        //
-    }
 
-    /**
-     * Update the resource in storage.
-     */
-    public function update(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Remove the resource from storage.
-     */
     public function destroy(): never
     {
         abort(404);
