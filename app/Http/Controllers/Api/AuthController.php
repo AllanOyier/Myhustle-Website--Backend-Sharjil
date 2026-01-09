@@ -26,7 +26,7 @@ class AuthController extends Controller
                 60 * 24 * 7,         // Expire in minutes (7 days)
                 '/',              // Path
                 null,      // domain = null
-                false,            // Secure false for dev HTTP
+                true,            // Secure true for dev HTTPS
                 true,             // HttpOnly
                 false,            // Raw
                 'None'            // SameSite=None for cross-port
@@ -44,12 +44,21 @@ class AuthController extends Controller
                 60 * 24 * 7,         // Expire in minutes (7 days)
                 '/',              // Path
                 null,      // domain = null
-                false,            // Secure false for dev HTTP
+                true,            // Secure true for dev HTTPS
                 true,             // HttpOnly
                 false,            // Raw
                 'None'            // SameSite=None for cross-port
             );
     }
+
+    public function getUser(Request $request , AuthService $service):UserRecource
+    {
+
+        $user = $service->getUser($request->user_id);
+
+        return new UserRecource($user);
+    }
+
 
 
 

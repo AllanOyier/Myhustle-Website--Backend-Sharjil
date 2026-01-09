@@ -19,9 +19,9 @@ return new class extends Migration
                 ->on('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-            $table->string('profile_img')->nullable();
-            $table->string('profile_logo_img')->nullable();
-            $table->string('profile_background_img')->nullable();
+            $table->string('profile')->nullable();
+            $table->string('logo')->nullable();
+            $table->string('background')->nullable();
             $table->string('about')->nullable();
             $table->string('tagline')->nullable();
             $table->enum('profile_status', ['active', 'deactive'])->default('active');

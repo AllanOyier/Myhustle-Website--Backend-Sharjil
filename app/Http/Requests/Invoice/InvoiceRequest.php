@@ -47,43 +47,6 @@ class InvoiceRequest extends FormRequest
             'required',
             'in:quotation,invoice,goods_delivery,receipt,statement',
         ],
-
-        'e_wallet_number' => [
-            'nullable',
-            'string',
-            'max:50',
-        ],
-
-        'bank_account_holder_name' => [
-            'required',
-            'string',
-            'max:255',
-        ],
-
-        'bank_name' => [
-            'required',
-            'string',
-            'max:255',
-        ],
-
-        'bank_account_number' => [
-            'required',
-            'string',
-            'max:50',
-        ],
-
-        'bank_branch_number' => [
-            'required',
-            'string',
-            'max:50',
-        ],
-
-        'bank_swift_code' => [
-            'required',
-            'string',
-            'max:50',
-        ],
-
         'data' => [
             'required',
             'array',

@@ -23,9 +23,9 @@ class ProfileCreateRequest extends FormRequest
     {
         return [
             'user_id' => ['required', 'string', 'max:255', 'exists:users,id'],
-            'profile_img' => ['nullable', 'string', 'max:255'],
-            'profile_background_img' => ['nullable', 'string', 'max:255'],
-            'profile_logo_img' => ['nullable', 'string', 'max:255'],
+            'profile' => ['nullable', 'string', 'max:255'],
+            'background' => ['nullable', 'string', 'max:255'],
+            'logo' => ['nullable', 'string', 'max:255'],
             'about' => ['nullable', 'string', 'max:255'],
             'tagline' => ['nullable', 'string', 'max:255'],
         ];

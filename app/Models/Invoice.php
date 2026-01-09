@@ -12,12 +12,6 @@ class Invoice extends Model
         'description',
         'status',
         'invoice_type',
-        'e_wallet_number',
-        'bank_account_holder_name',
-        'bank_name',
-        'bank_account_number',
-        'bank_branch_number',
-        'bank_swift_code',
         'data',
     ];
 

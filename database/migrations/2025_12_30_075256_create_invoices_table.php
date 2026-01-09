@@ -28,12 +28,6 @@ return new class extends Migration
 
             $table->enum('invoice_type', ['quotation', 'invoice', 'goods_delivery', 'receipt', 'statement'])->default('invoice')->nullable(false);
             $table->string('description');
-            $table->string('e_wallet_number')->nullable();
-            $table->string('bank_account_holder_name');
-            $table->string('bank_name');
-            $table->string('bank_account_number');
-            $table->string('bank_branch_number');
-            $table->string('bank_swift_code');
             $table->json('data');
             $table->timestamps();
         });

@@ -18,10 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::post("/register", [AuthController::class, "store"]);
 Route::post("/login", [AuthController::class, "login"]);
 
-Route::post('/product/create', [ProductController::class, "createProduct"]);
-Route::post('/promotion/create', [PromotionController::class, "createPromotion"]);
-Route::post('/certificate/create', [CertificateController::class, "createCertificate"]);
-Route::post('/organization/detail/create', [OrganizationDetialController::class, "createOrganizationDetail"]);
+
 
 Route::post('/catalogue/create', [CatalogueController::class, "createCatalogue"]);
 Route::post('/catalogue/about/create', [AboutCatalogueController::class, "createAboutCatalogue"]);
@@ -29,15 +26,28 @@ Route::post('/catalogue//product/create', [ProductCatalogueController::class, "c
 
 
 
-Route::post('/job/lead/create', [JobLeadController::class, "createJobLead"]);
-Route::post('/invoice/create', [InvoiceController::class, "createInvoice"]);
 
 
 Route::group(['middleware' => [AuthMiddleware::class]], function () {
 
     Route::get('/user', function (Request $request) {
-        return $request->all();
+        return $request->user();
     });
 
+    // Auth and profile routes
     Route::post("/profile/create", [ProfileController::class, "createProfile"]);
+    Route::get("/profile/get/user", [AuthController::class, "getUser"]);
+
+    // Other profile data
+    Route::post('/product/create', [ProductController::class, "createProduct"]);
+    Route::post('/promotion/create', [PromotionController::class, "createPromotion"]);
+    Route::post('/certificate/create', [CertificateController::class, "createCertificate"]);
+    Route::post('/organization/detail/create', [OrganizationDetialController::class, "createOrganizationDetail"]);
+
+
+
+
+//  Invoice and job Lead
+Route::post('/job/lead/create', [JobLeadController::class, "createJobLead"]);
+Route::post('/invoice/create', [InvoiceController::class, "createInvoice"]);
 });

@@ -50,4 +50,15 @@ class AuthService extends Service
             'token' => $token
         ];
     }
+    public function getUser($userId)
+    {
+        /** @var User $user */
+        $user = $this->query()->find($userId)->load([
+            'profile',
+            'products',
+            'promotions',
+            'certificates'
+        ]);
+        return $user;
+    }
 }
