@@ -10,6 +10,15 @@ use Illuminate\Http\Request;
 
 class AboutCatalogueController extends Controller
 {
+
+    public function getAboutCatalogue(Request $request, AboutCatalogueService $catalogueService): AboutCatalogueResource
+    {
+
+        $catalogue = $catalogueService->getAboutCatalogue($request->user_id);
+
+        return new AboutCatalogueResource($catalogue);
+    }
+
     public function createAboutCatalogue(AboutCatalogueRequest $request, AboutCatalogueService $catalogueService): AboutCatalogueResource
     {
         $catalogue = $catalogueService->createAboutCatalogue($request->validated());

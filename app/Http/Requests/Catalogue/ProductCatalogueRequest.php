@@ -30,19 +30,23 @@ class ProductCatalogueRequest extends FormRequest
 
 
             'product' => [
-                'required',
+                'nullable',
                 'string',
                 'max:255',
             ],
 
             'description' => [
-                'required',
+                'nullable',
                 'string',
                 'max:500',
             ],
 
             'content' => [
-                'required',
+                'nullable',
+                'array', // ensures valid JSON array
+            ],
+            'special_product' => [
+                'nullable',
                 'array', // ensures valid JSON array
             ],
         ];

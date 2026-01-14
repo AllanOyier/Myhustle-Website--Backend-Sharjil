@@ -15,6 +15,7 @@ class ApiExceptionHandler
 {
     public static function handle(Throwable $e)
     {
+
         if ($e instanceof ValidationException) {
             return response()->json([
                 'success' => false,
@@ -108,7 +109,6 @@ class ApiExceptionHandler
                 ], 409);
             }
         }
-
         return null;
     }
 }

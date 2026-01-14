@@ -16,4 +16,10 @@ class CatalogueController extends Controller
 
         return new CatalogueResource($catalogue);
     }
+    public function getCatalogue(Request $request, CatalogueService $catalogueService): CatalogueResource
+    {
+
+        $catalogue = $catalogueService->getCatalogue($request->user_id);
+        return new CatalogueResource($catalogue);
+    }
 }

@@ -20,10 +20,6 @@ Route::post("/login", [AuthController::class, "login"]);
 
 
 
-Route::post('/catalogue/create', [CatalogueController::class, "createCatalogue"]);
-Route::post('/catalogue/about/create', [AboutCatalogueController::class, "createAboutCatalogue"]);
-Route::post('/catalogue//product/create', [ProductCatalogueController::class, "createProductCatalogue"]);
-
 
 
 
@@ -47,7 +43,21 @@ Route::group(['middleware' => [AuthMiddleware::class]], function () {
 
 
 
-//  Invoice and job Lead
-Route::post('/job/lead/create', [JobLeadController::class, "createJobLead"]);
-Route::post('/invoice/create', [InvoiceController::class, "createInvoice"]);
+    //  Invoice and job Lead
+    Route::post('/job/lead/create', [JobLeadController::class, "createJobLead"]);
+    Route::post('/invoice/create', [InvoiceController::class, "createInvoice"]);
+
+
+    // Catalogue Routes
+    Route::post('/catalogue/create', [CatalogueController::class, "createCatalogue"]);
+    Route::get('/catalogue/get', [CatalogueController::class, "getCatalogue"]);
+
+
+    // About Catalogue
+    Route::post('/catalogue/about/create', [AboutCatalogueController::class, "createAboutCatalogue"]);
+    Route::get('/catalogue/about/get', [AboutCatalogueController::class, "getAboutCatalogue"]);
+
+    // Product Catalogue
+    Route::get('/catalogue/product/get', [ProductCatalogueController::class, "getProductCatalogue"]);
+    Route::post('/catalogue/product/create', [ProductCatalogueController::class, "createProductCatalogue"]);
 });

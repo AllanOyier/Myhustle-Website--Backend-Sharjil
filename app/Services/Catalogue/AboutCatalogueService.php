@@ -13,19 +13,17 @@ class AboutCatalogueService extends Service
         return parent::__construct($model);
     }
 
+
+    public function getAboutCatalogue($user_id): ?AboutCatalogue
+    {
+        return $this->query()->where('user_id', $user_id)->firstOrFail();
+    }
+
+
+
+
     public function createAboutCatalogue(array $data): AboutCatalogue
     {
-        return $this->create($data);
-    }
-
-    public function updateAboutCatalogue(int $id, array $data): ?AboutCatalogue
-    {
-        return $this->update($id, $data);
-    }
-
-
-    public function deleteAboutCatalogue(int $id): bool
-    {
-        return $this->delete($id);
+        return $this->createOrUpdate(['user_id' => $data['user_id']], $data);
     }
 }

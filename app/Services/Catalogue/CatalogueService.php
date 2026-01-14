@@ -14,16 +14,16 @@ class CatalogueService extends Service
         return parent::__construct($model);
     }
 
+    public function getCatalogue($user_id): ?Catalogue
+    {
+        return $this->query()->where('user_id', $user_id)->firstOrFail();
+    }
+
+
     public function createCatalogue(array $data): Catalogue
     {
-        return $this->create($data);
+        return $this->createOrUpdate(['user_id' => $data['user_id']], $data);
     }
-
-    public function updateCatalogue(int $id, array $data): ?Catalogue
-    {
-        return $this->update($id, $data);
-    }
-
 
     public function deleteCatalogue(int $id): bool
     {
